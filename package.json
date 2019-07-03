@@ -1,0 +1,17 @@
+{
+  "name": "smtpt",
+  "version": "0.0.1",
+  "description": "smtp email client for nodejs, electron. support typescript and javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run mailme"
+  },
+  "keywords": [
+    "email",
+    "smtp",
+    "typescript",
+    "nodejs"
+  ],
+  "author": "MadfishDT",
+  "license": "ISC"
+}
