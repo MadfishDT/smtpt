@@ -4,14 +4,40 @@
   "description": "smtp email client for nodejs, electron. support typescript and javascript",
   "main": "index.js",
   "scripts": {
-    "test": "npm run mailme"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch src --delay 1 --exec ts-node src/lib.ts",
+    "build:prod": "webpack --config config/prod/config.js",
+    "build:dev": "webpack --config config/dev/dev.config.js --watch",
+    "lint": "tslint --project tsconfig.json src/*",
+    "lint:fix": "tslint --project tsconfig.json src/* --fix"
   },
   "keywords": [
     "email",
     "smtp",
     "typescript",
-    "nodejs"
+    "nodejs",
+    "javascript",
+    "electron"
   ],
+  "homepage": "https://madfishdt.github.io",
+  "devDependencies": {
+    "codelyzer": "~4.5.0",
+    "dts-bundle-webpack": "^1.0.2",
+    "eslint": "^5.15.0",
+    "nodemon": "^1.18.11",
+    "npm-run-all": "^4.1.5",
+    "source-map-support": "^0.5.12",
+    "ts-loader": "^5.4.4",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  },
   "author": "MadfishDT",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "line-buffer": "^0.1.4",
+    "promised-timeout": "^0.5.1",
+    "rxjs": "^6.5.2"
+  }
 }
