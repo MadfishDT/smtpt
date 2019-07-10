@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/zlibt.ts',
+  entry: './src/lib.ts',
   module: {
     rules: [
       {
@@ -17,7 +17,7 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js' ]
   },
   output: {
-    filename: 'zlibt.js',
+    filename: 'lib.js',
     libraryTarget: 'commonjs',
     path: path.resolve(__dirname, '../dist/dev')
   }

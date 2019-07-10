@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --watch src --delay 1 --exec ts-node src/lib.ts",
-    "build:prod": "webpack --config config/prod/config.js",
-    "build:dev": "webpack --config config/dev/dev.config.js --watch",
+    "build:prod": "webpack --config config/webpack.prod.config.js",
+    "build:dev": "webpack --config config/webpack.dev.config.js --watch --mode development",
     "lint": "tslint --project tsconfig.json src/*",
     "lint:fix": "tslint --project tsconfig.json src/* --fix"
   },
