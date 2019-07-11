@@ -1,6 +1,12 @@
 import { SMTPClient } from './smtp-client';
 import { Subject } from 'rxjs';
 
+export enum eAuthType {
+	plain = 0,
+	login,
+	crammd5
+}
+
 export interface IMailSenderStatus {
     kind: string;
     data: any;
@@ -12,6 +18,8 @@ export class Mailsender {
     private isStopMail = false;
     private _greet ='HELLO';
     private _isSecure = false;
+	private _userName = '';
+	private _userPassword = '';
 
     constructor() {
         this._statusSubject = new Subject<IMailSenderStatus>();
@@ -47,6 +55,15 @@ export class Mailsender {
         this._isSecure = true;
         return this;
     }
+	// 3type authentication
+	// public authLogin( username: string = null, password: string = null, timeout: number = 0 )
+	// public authPlain(username: string = null, password: string = null, timeout: number = 0)
+	// public authCramMd5(username: string, password: string)
+	// authPlain
+	public authentication(username: string, password: string, authType: eAuthType) {
+			this._userName = username;
+			this._userPassword = password;
+	}
 
     public onReject(client: SMTPClient, reason: string) {
         client.quit();

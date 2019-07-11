@@ -329,7 +329,7 @@ export class SMTPClient extends SMTPChannel {
         }
         });
     }
-
+	
     /*
     * Returns a Promise which sends the AUTH LOGIN commands to the server. We can
     * abort the operating after a certain number of milliseconds by passing the
