@@ -25,11 +25,11 @@ export class SMTPClient extends SMTPChannel {
         const handler = (line) => lines.push(line);
 
         return super.connect(handler, timeout).then((code) => {
-        if (code.charAt(0) === '2') {
-            return code;
-        } else {
-            throw this._createSMTPResponseError(lines);
-        }
+            if (code.charAt(0) === '2') {
+                return code;
+            } else {
+                throw this._createSMTPResponseError(lines);
+            }
         });
     }
 
@@ -372,7 +372,7 @@ export class SMTPClient extends SMTPChannel {
         });
     }
 
-    public authCramMd5(username: string, password: string) {
+    public authCramMd5(username: string, password: string, timeout: number) {
         return super.write(`AUTH CRAM-MD5\r\n`).then( code => {
                 const challengeMatch = code.match(/^334\s+(.+)$/);
                 let challengeString = '';
@@ -391,7 +391,7 @@ export class SMTPClient extends SMTPChannel {
                 const hex_hmac = hmac_md5.digest('hex');
                 const prepended = username + ' ' + hex_hmac;
 
-                return super.write(Buffer.from(prepended).toString('base64'));
+                return super.write(Buffer.from(prepended).toString('base64'), timeout);
         });
     }
 
@@ -405,7 +405,7 @@ export class SMTPClient extends SMTPChannel {
         const enhancedCode = this.parseEnhancedReplyCode(line);
         const message = lines.map(l => this.parseReplyText(l)).join(' ').replace(/\s\s+/g, ' ');
 
-        return [message, code, enhancedCode];
+        return { message:  message, code, enhancedCode};
     }
 
     /*
